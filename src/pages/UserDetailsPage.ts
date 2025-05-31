@@ -1,0 +1,54 @@
+import { Locator, Page } from "@playwright/test";
+
+export class UserDetailsPage{
+    page:Page;
+    streetAddress:Locator;
+    additionStreetAddress:Locator
+    state:Locator;
+    city:Locator;
+    zipCode:Locator;
+    country:Locator;
+    nextPage:Locator;
+    role:Locator;
+    constructor(page:Page){
+        this.streetAddress=page.getByRole('textbox', { name: 'Street Address', exact: true })
+        this.additionStreetAddress=page.getByRole('textbox', { name: 'Additional Street Address' })
+        this.state= page.getByRole('textbox', { name: 'State (Full)' })
+        this.role=page.locator("//div[@role='option']")
+        this.city=page.getByRole('textbox', { name: 'City' })
+        this.zipCode=page.getByRole('textbox', { name: 'Zip Code' })
+        this.country=page.getByRole('textbox', { name: 'Country' })
+        //this.countryRole=page.locator("");
+        this.nextPage=page.getByRole('button', { name: 'Next Page' })
+        ////div[@role="option"]//*[text()='American Samoa']
+    }
+
+    async fillUserDetails(streetAddress:string,additionalStreetAddress:string,state:string,city:string,zipCode:string,country:string){
+        try {
+            await this.streetAddress.fill(streetAddress);
+            await this.additionStreetAddress.fill(additionalStreetAddress);
+            await this.state.click();
+            await this.role.locator("//*[text()='"+state+"']").click();
+            await this.city.fill(city);
+            await this.zipCode.fill(zipCode);
+            await this.country.click();
+            await this.role.locator("//*[text()='"+country+"']").click();
+            await this.nextPage.click();  
+        } catch (error) {
+           console.log(error); 
+        }
+        
+        // var streetAddress="Colive grand"
+        // var additionalStreetAddress="Wakad chauk"
+        // var state="Maine"
+        // var city="Pune"
+        // var zipCode="442912"
+        // var country="India"
+        
+
+
+
+
+
+    }
+}
