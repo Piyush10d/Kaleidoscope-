@@ -32,77 +32,41 @@ export class EducationDetailsPage {
 
     }
     async fillEducationalDetails(shighschoolName: string, hsStreetAddress: string, additionalAddress: string, hsCity: string, hsState: string, zipCode: string, gpa: string, yearGraduation: string, inputFile: string) {
-        var shighschoolName = "Shivaji Science Arts junior college"
-        var hsStreetAddress = "Anandwan square"
-        var additionalAddress = "Tilak ward"
-        var hsCity = "Warora"
-        var hsState = "Maine"
-        var zipCode = "422907"
-        var gpa = "8"
-        var yearGraduation = "2012"
-        var inputFile = "my School Transcript.pdf"
-        await this.highSchoolName.fill(shighschoolName);
-        await this.highSchoolStreet.fill(hsStreetAddress);
-        await this.additionalHighScoolStreet.fill(additionalAddress);
-        await this.highSchoolCity.fill(hsCity);
-        await this.highSchoolState.click();
-        await this.role.locator("//*[text()='" + hsState + "']").click();
-        await this.zipCode.fill(zipCode);
-        await this.gpa.fill(gpa);
-        await this.yearGraduation.fill(yearGraduation);
-        const [upload] = await Promise.all([
-            this.page.waitForEvent("filechooser"),
-            this.uploadFile.click()
-        ])
-        await upload.setFiles(["C://Kaleidoscope//my School Transcript.pdf"])
-        await this.page.waitForSelector("//span[text()='"+inputFile+"']");
-        //await this.page.waitForTimeout(10000);
-        await this.nextPage.click();
+        try {
+            // var shighschoolName = "Shivaji Science Arts junior college"
+            // var hsStreetAddress = "Anandwan square"
+            // var additionalAddress = "Tilak ward"
+            // var hsCity = "Warora"
+            // var hsState = "Maine"
+            // var zipCode = "422907"
+            // var gpa = "8"
+            // var yearGraduation = "2012"
+            // var inputFile = "my School Transcript.pdf"
+            await this.highSchoolName.fill(shighschoolName);
+            await this.highSchoolStreet.fill(hsStreetAddress);
+            await this.additionalHighScoolStreet.fill(additionalAddress);
+            await this.highSchoolCity.fill(hsCity);
+            await this.highSchoolState.click();
+            await this.role.locator("//*[text()='" + hsState + "']").click();
+            await this.zipCode.fill(zipCode);
+            await this.gpa.fill(gpa);
+            await this.yearGraduation.fill(yearGraduation);
+            const [upload] = await Promise.all([
+                this.page.waitForEvent("filechooser"),
+                this.uploadFile.click()
+            ])
+            await upload.setFiles(["C://Kaleidoscope//my School Transcript.pdf"])
+            await this.page.waitForSelector("//span[text()='" + inputFile + "']");
+            await this.nextPage.click();
+            try {
+                await this.page.waitForTimeout(5000);
+                await this.nextPage.click();
+            } catch (error) {
+                console.log("click next page")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }
-
-
-
-
-// await page.getByRole('textbox', { name: 'High School Name' }).click();
-//   await page.getByRole('textbox', { name: 'High School Name' }).fill('Shivaji Science Arts junior college');
-//   await page.getByRole('textbox', { name: 'High School Street Address', exact: true }).click();
-//   await page.getByRole('textbox', { name: 'High School Street Address', exact: true }).fill('Anandwan square ');
-//   await page.goto('https://apply.mykaleidoscope.com/program/a0DTP00000H3PUy2AN/applicant/application/a0ETP0000098bbW2AQ/page/d61ea0fe-5552-41f0-9de7-e358e7f82552');
-//   await page.getByRole('textbox', { name: 'Additional High School Street' }).click();
-//   await page.getByRole('textbox', { name: 'Additional High School Street' }).fill('Tilak ward');
-//   await page.getByRole('textbox', { name: 'High School City' }).click();
-//   await page.getByRole('textbox', { name: 'High School City' }).fill('Warora');
-//   await page.getByRole('textbox', { name: 'High School State (Full)' }).click();
-//   await page.getByRole('textbox', { name: 'High School State (Full)' }).fill('Ma');
-//   await page.getByText('Maine').click();
-//   await page.getByRole('textbox', { name: 'High School State (Full)' }).press('Tab');
-//   await page.getByRole('textbox', { name: 'High School Zip Code' }).fill('422907');
-//   await page.getByRole('textbox', { name: 'High School Zip Code' }).press('Tab');
-//   await page.getByRole('textbox', { name: 'GPA' }).fill('8');
-//   await page.getByRole('textbox', { name: 'GPA' }).press('Tab');
-//   await page.getByRole('button').filter({ hasText: /^$/ }).first().click(); //check this
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).fill('1008');
-//   await page.goto('https://apply.mykaleidoscope.com/program/a0DTP00000H3PUy2AN/applicant/application/a0ETP0000098bbW2AQ/page/d61ea0fe-5552-41f0-9de7-e358e7f82552');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).fill('10082012');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).press('Tab');
-//   await page.getByRole('button').filter({ hasText: /^$/ }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).fill('01/07/2012');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).press('Tab');
-//   await page.getByRole('button').filter({ hasText: /^$/ }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).fill('2012');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).press('Tab');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).click();
-//   await page.getByRole('button', { name: '6 January 2012', exact: true }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).press('Tab');
-//   await page.getByRole('button').filter({ hasText: /^$/ }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).click();
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).fill('2012');
-//   await page.getByRole('textbox', { name: 'Year of High School Graduation' }).press('Tab');
-//   await page.getByRole('button', { name: 'Upload File' }).click();
-//   await page.getByRole('button', { name: 'Upload File' }).setInputFiles('My School Transcript.pdf');
-//   await page.goto('https://apply.mykaleidoscope.com/program/a0DTP00000H3PUy2AN/applicant/application/a0ETP0000098bbW2AQ/page/d61ea0fe-5552-41f0-9de7-e358e7f82552');
-//   await page.getByRole('button', { name: 'Save' }).click();
-//   await page.getByRole('button', { name: 'Next Page' }).click();
