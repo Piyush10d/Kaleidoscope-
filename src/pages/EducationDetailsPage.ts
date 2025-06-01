@@ -40,14 +40,13 @@ export class EducationDetailsPage {
         var zipCode = "422907"
         var gpa = "8"
         var yearGraduation = "2012"
-        var inputFile = "My School Transcript.pdf"
+        var inputFile = "my School Transcript.pdf"
         await this.highSchoolName.fill(shighschoolName);
         await this.highSchoolStreet.fill(hsStreetAddress);
         await this.additionalHighScoolStreet.fill(additionalAddress);
         await this.highSchoolCity.fill(hsCity);
         await this.highSchoolState.click();
         await this.role.locator("//*[text()='" + hsState + "']").click();
-        //await this.highSchoolState.fill(hsState);
         await this.zipCode.fill(zipCode);
         await this.gpa.fill(gpa);
         await this.yearGraduation.fill(yearGraduation);
@@ -56,10 +55,8 @@ export class EducationDetailsPage {
             this.uploadFile.click()
         ])
         await upload.setFiles(["C://Kaleidoscope//my School Transcript.pdf"])
-        //await this.uploadFile.click();
-        //await this.uploadFile.setInputFiles(inputFile);
-        //await this.save.click()
-        await this.page.waitForTimeout(10000);
+        await this.page.waitForSelector("//span[text()='"+inputFile+"']");
+        //await this.page.waitForTimeout(10000);
         await this.nextPage.click();
     }
 }

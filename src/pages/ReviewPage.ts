@@ -5,11 +5,13 @@ export class ReviewPage{
     application:Locator;
     submitButton:Locator;
     continueApplication:Locator;
+    firstName:Locator;
     constructor(page:Page){
         this.page=page;
         this.application=page.getByRole('tab', { name: 'Application' });
         this.submitButton=page.getByRole('button', { name: 'Submit' })
         this.continueApplication=page.getByRole('link', { name: 'Continue Application' })
+        this.firstName=page.locator("//p[text()='First Name']/following-sibling::p");
     }
     async reviewApplicaton(){
         await this.application.click();

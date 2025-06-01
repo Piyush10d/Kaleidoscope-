@@ -3,6 +3,7 @@ import { POM_Pages } from "../../pages/POM_Pages";
 
 var page;
 var obj_POM_Pages:POM_Pages;
+var firstName:string;
 test.describe.configure({mode:"serial"});
 
 test.beforeAll(async({})=>{
@@ -10,13 +11,14 @@ test.beforeAll(async({})=>{
     const context= await browser.newContext();
     page         = await context.newPage();
     await page.goto("https://apply.mykaleidoscope.com/program/sdet-test-scholarship");
+    await page.getByRole('button', { name: 'Log In to Apply' }).click();
     obj_POM_Pages=new POM_Pages(page);
-    await obj_POM_Pages.obj_KaleidoscopeSDETScholarshipPage.page.waitForLoadState("domcontentloaded");
-    await obj_POM_Pages.obj_KaleidoscopeSDETScholarshipPage.gotoRegistrationPage();
+    //await obj_POM_Pages.obj_KaleidoscopeSDETScholarshipPage.page.waitForLoadState("domcontentloaded");
+    //await obj_POM_Pages.obj_KaleidoscopeSDETScholarshipPage.gotoRegistrationPage();
 })
 
 test("Fill Personal details of new User",async()=>{
-    await obj_POM_Pages.obj_RegisterUser.doRegistration();
+    firstName=await obj_POM_Pages.obj_RegisterUser.doRegistration();
 })
 test("Fill User details", async()=>{
     await obj_POM_Pages.obj_UserDetailsPage.fillUserDetails("Colive grand","Wakad chauk","Maine","Pune","442912","India");
@@ -52,20 +54,20 @@ test("Check eassy boxes",async()=>{
     await obj_POM_Pages.obj_EassyPage.eassyAboutAnimals.fill("I am writing eassy about Animal");
     await obj_POM_Pages.obj_EassyPage.school.check();
     await obj_POM_Pages.obj_EassyPage.eassyAboutSchool.fill("I am writing eassy about school");
-    await obj_POM_Pages.obj_EassyPage.page.waitForTimeout(2000);
-    await obj_POM_Pages.obj_EassyPage.nextPage.click();
+    //await obj_POM_Pages.obj_EassyPage.page.waitForTimeout(2000);
+    await obj_POM_Pages.obj_EassyPage.nextPage.click({timeout:2000});
 })
 test("Review page",async()=>{
     await obj_POM_Pages.obj_ReviewPage.application.click();
+    await expect(obj_POM_Pages.obj_ReviewPage.firstName).toHaveText(firstName);
     
 })
 test("Submit Application",async()=>{
     const pageURL=await obj_POM_Pages.obj_ReviewPage.page.url();
     await obj_POM_Pages.obj_ReviewPage.submitApplication();
+    await page.waitForNavigation();
     await obj_POM_Pages.obj_ReviewPage.goToNewURL(pageURL);
-    //await obj_POM_Pages.obj_ReviewPage.page.pause();
-    await expect(page.getByRole('link', { name: 'Continue Application' })).toBeDisabled({timeout:5000});
-    //(await expect(await obj_POM_Pages.obj_ReviewPage.continueApplication)).not.toBeEditable();
+    await expect(await obj_POM_Pages.obj_ReviewPage.submitButton).toBeDisabled();
 })
 
 
