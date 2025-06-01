@@ -1,6 +1,7 @@
 import {test,expect, chromium, Page} from "@playwright/test";
 import { POM_Pages } from "../../pages/POM_Pages";
 
+
 var page;
 var obj_POM_Pages:POM_Pages;
 var firstName:string;
