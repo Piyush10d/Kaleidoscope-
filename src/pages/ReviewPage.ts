@@ -22,7 +22,6 @@ export class ReviewPage{
     }
     async goToNewURL(url:string){
         await this.page.goto(url,{timeout:5000});
-        //await this.page.waitForTimeout(5000);
     }
     
 }

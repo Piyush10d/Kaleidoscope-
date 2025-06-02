@@ -18,9 +18,7 @@ export class UserDetailsPage{
         this.city=page.getByRole('textbox', { name: 'City' })
         this.zipCode=page.getByRole('textbox', { name: 'Zip Code' })
         this.country=page.getByRole('textbox', { name: 'Country' })
-        //this.countryRole=page.locator("");
         this.nextPage=page.getByRole('button', { name: 'Next Page' })
-        ////div[@role="option"]//*[text()='American Samoa']
     }
 
     async fillUserDetails(streetAddress:string,additionalStreetAddress:string,state:string,city:string,zipCode:string,country:string){
@@ -37,18 +35,5 @@ export class UserDetailsPage{
         } catch (error) {
            console.log(error); 
         }
-        
-        // var streetAddress="Colive grand"
-        // var additionalStreetAddress="Wakad chauk"
-        // var state="Maine"
-        // var city="Pune"
-        // var zipCode="442912"
-        // var country="India"
-        
-
-
-
-
-
     }
 }

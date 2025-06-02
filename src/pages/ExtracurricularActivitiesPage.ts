@@ -40,12 +40,6 @@ export class ExtracurricularActivitiesPage {
         } catch (error) {
             console.log(error);
         }
-        // var activity="Dancing";
-        // var yrInvolved="2"
-        // var role="First Prize in departmental dance"
-        // var discription="Participated in all the events and finally got first prize in dance"
-
-        //await this.nextPage.click();
     }
 
 

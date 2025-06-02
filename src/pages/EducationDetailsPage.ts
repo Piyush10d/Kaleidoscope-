@@ -35,15 +35,6 @@ export class EducationDetailsPage {
     }
     async fillEducationalDetails(shighschoolName: string, hsStreetAddress: string, additionalAddress: string, hsCity: string, hsState: string, zipCode: string, gpa: string, yearGraduation: string, inputFile: string) {
         try {
-            // var shighschoolName = "Shivaji Science Arts junior college"
-            // var hsStreetAddress = "Anandwan square"
-            // var additionalAddress = "Tilak ward"
-            // var hsCity = "Warora"
-            // var hsState = "Maine"
-            // var zipCode = "422907"
-            // var gpa = "8"
-            // var yearGraduation = "2012"
-            // var inputFile = "My School Transcript.pdf"
             await this.highSchoolName.fill(shighschoolName);
             await this.highSchoolStreet.fill(hsStreetAddress);
             await this.additionalHighScoolStreet.fill(additionalAddress);
@@ -57,7 +48,6 @@ export class EducationDetailsPage {
                 this.page.waitForEvent("filechooser"),
                 this.uploadFile.click()
             ])
-            //const pdfPath = path.resolve(__filename,"../utils/My School Transcript.pdf")
             await upload.setFiles([process.cwd()+ "//src//utils//My School Transcript.pdf"])
             await this.page.waitForSelector("//span[text()='" + inputFile + "']");
             await this.nextPage.click();
