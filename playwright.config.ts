@@ -1,6 +1,7 @@
-import {devices, PlaywrightTestConfig} from "@playwright/test"
+import {devices, PlaywrightTestConfig,defineConfig} from "@playwright/test"
 
-export const config:PlaywrightTestConfig={
+
+export default defineConfig({
   //testDir:"src/tests/workflow",
   testMatch:"wf_kaleidoscope.spec.ts",
   use:{
@@ -16,7 +17,7 @@ export const config:PlaywrightTestConfig={
     {name:"chromium", use:{...devices["Desktop Chrome"]},},
   ],
   reporter:[
-    ["html",{open:"always"}],
-    ["line"]
-  ]
-}
+    ['html',{outputFolder:'Playwright-HTMLreport',open:'always'}],
+    ["line"],
+  ],
+})
