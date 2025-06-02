@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test"
+import { faker } from '@faker-js/faker';
 
 export class RegisterUser {
     page: Page;
@@ -11,7 +12,7 @@ export class RegisterUser {
     confirmCheckbox: Locator;
     submitButton: Locator;
     enterPassword: Locator;
-    signIn:Locator;
+    signIn: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -24,31 +25,29 @@ export class RegisterUser {
         this.confirmCheckbox = page.getByRole('checkbox', { name: 'I confirm that I am at least' })
         this.submitButton = page.getByRole('button', { name: 'Submit' })
         this.enterPassword = page.getByRole('textbox', { name: 'Enter Your Password' })
-        this.signIn=page.getByRole('button', { name: 'Sign In' })
+        this.signIn = page.getByRole('button', { name: 'Sign In' })
     }
 
     async doRegistration() {
         try {
             var fName: any;
             await this.page.waitForLoadState("domcontentloaded");
-            await this.page.waitForTimeout(10000);
-            var randomnumber = Math.floor(Math.random() * (99999999 - 999999) + 999999);
-            var emailString = "piyush" + randomnumber + "@gmail.com";
-            console.log("New resistered Email id is: "+emailString);
-            fName = "Piyush" + randomnumber;
-            var lName = "Dhawas" + randomnumber;
-            var contactNumber = "7276226164"
-            var pass = "Kaleido@1010d"
-            await this.emailAddress.fill(emailString);
+            const email = faker.internet.email();
+            fName = faker.internet.username();
+            var lName = faker.internet.username();
+            const contactNumber= faker.phone.number();
+            const pass = "Apply@1010d";
+            await this.emailAddress.fill(email);      //myemailofficial@gmail.com  //Apply@1010d
             await this.nextButton.click();
             if (await this.enterPassword.isVisible()) {
-                await this.enterPassword.fill("Apply@1010d");
+                await this.enterPassword.fill(pass);  
                 await this.signIn.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
             else {
                 await this.firstName.fill(fName);
                 await this.lastName.fill(lName);
+                await this.page.waitForLoadState("domcontentloaded");
                 await this.mobileNumber.fill(contactNumber);
                 await this.createPassword.fill(pass);
                 await this.confirmCheckbox.check();
@@ -63,5 +62,4 @@ export class RegisterUser {
             return fName;
         }
     }
-
 }

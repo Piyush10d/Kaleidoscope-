@@ -1,4 +1,6 @@
 import { Locator, Page } from "@playwright/test";
+import path from 'path';
+
 
 export class EducationDetailsPage {
     page: Page;
@@ -41,7 +43,7 @@ export class EducationDetailsPage {
             // var zipCode = "422907"
             // var gpa = "8"
             // var yearGraduation = "2012"
-            // var inputFile = "my School Transcript.pdf"
+            // var inputFile = "My School Transcript.pdf"
             await this.highSchoolName.fill(shighschoolName);
             await this.highSchoolStreet.fill(hsStreetAddress);
             await this.additionalHighScoolStreet.fill(additionalAddress);
@@ -55,7 +57,8 @@ export class EducationDetailsPage {
                 this.page.waitForEvent("filechooser"),
                 this.uploadFile.click()
             ])
-            await upload.setFiles(["C://Kaleidoscope//my School Transcript.pdf"])
+            //const pdfPath = path.resolve(__filename,"../utils/My School Transcript.pdf")
+            await upload.setFiles([process.cwd()+ "//src//utils//My School Transcript.pdf"])
             await this.page.waitForSelector("//span[text()='" + inputFile + "']");
             await this.nextPage.click();
             try {

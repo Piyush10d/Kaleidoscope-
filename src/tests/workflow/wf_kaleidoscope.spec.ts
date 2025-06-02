@@ -34,7 +34,7 @@ test("Fill Extracurricular Activities",async()=>{
     await obj_POM_Pages.obj_ExtracurricularActivitiesPage.nextPage.click();  
 })
 test("Fill Education Details",async()=>{
-    await obj_POM_Pages.obj_EducationDetailsPage.fillEducationalDetails("Shivaji Science Arts junior college","Anandwan square","Tilak ward","Warora","Maine","422907","8","2012","my School Transcript.pdf");
+    await obj_POM_Pages.obj_EducationDetailsPage.fillEducationalDetails("Shivaji Science Arts junior college","Anandwan square","Tilak ward","Warora","Maine","422907","8","2012","My School Transcript.pdf");
 })
 test("Check eassy boxes",async()=>{
     await obj_POM_Pages.obj_EassyPage.car.check();
