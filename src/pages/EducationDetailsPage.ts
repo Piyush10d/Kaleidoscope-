@@ -48,7 +48,7 @@ export class EducationDetailsPage {
                 this.page.waitForEvent("filechooser"),
                 this.uploadFile.click()
             ])
-            await upload.setFiles([process.cwd()+ "//src//utils//My School Transcript.pdf"])
+            await upload.setFiles([process.cwd()+ "//src//tests//Input//My School Transcript.pdf"])
             await this.page.waitForSelector("//span[text()='" + inputFile + "']");
             await this.nextPage.click();
             try {
@@ -57,6 +57,7 @@ export class EducationDetailsPage {
             } catch (error) {
                 console.log("click next page")
             }
+            console.log("Education Details filled successfully");
         } catch (error) {
             console.log(error);
         }

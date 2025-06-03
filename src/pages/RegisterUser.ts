@@ -28,38 +28,30 @@ export class RegisterUser {
         this.signIn = page.getByRole('button', { name: 'Sign In' })
     }
 
-    async doRegistration() {
+    async doRegistration(email:string,firstName:string,lastName:string,contactNumber:string,password:string) {
         try {
-            var fName: any;
             await this.page.waitForLoadState("domcontentloaded");
-            const email = faker.internet.email();
-            fName = faker.internet.username();
-            var lName = faker.internet.username();
-            const contactNumber= faker.phone.number();
-            const pass = "Apply@1010d";
-            await this.emailAddress.fill(email);      //myemailofficial@gmail.com  //Apply@1010d
+            await this.emailAddress.fill(email);      
             await this.nextButton.click();
             if (await this.enterPassword.isVisible()) {
-                await this.enterPassword.fill(pass);  
+                await this.enterPassword.fill(password);  
                 await this.signIn.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
             else {
-                await this.firstName.fill(fName);
-                await this.lastName.fill(lName);
+                await this.firstName.fill(firstName);
+                await this.lastName.fill(lastName);
                 await this.page.waitForLoadState("domcontentloaded");
                 await this.mobileNumber.fill(contactNumber);
-                await this.createPassword.fill(pass);
+                await this.createPassword.fill(password);
                 await this.confirmCheckbox.check();
                 await this.submitButton.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
+            console.log("User successfully Registerd with emailID : "+email);
 
         } catch (error) {
             console.log(error)
-        }
-        finally {
-            return fName;
         }
     }
 }

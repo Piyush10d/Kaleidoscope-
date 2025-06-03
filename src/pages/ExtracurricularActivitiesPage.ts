@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+import { data } from "../tests/Input/userData";
 
 
 export class ExtracurricularActivitiesPage {
@@ -37,6 +38,7 @@ export class ExtracurricularActivitiesPage {
             await this.add.click();
             await this.page.waitForLoadState("domcontentloaded");
             //await this.save.click();
+            console.log("Extra Cussricular Activity details Filled Successfully for: "+activity);
         } catch (error) {
             console.log(error);
         }

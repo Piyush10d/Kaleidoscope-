@@ -11,7 +11,7 @@ export default defineConfig({
     channel:"chrome"
   },
   fullyParallel:true,
-  retries:2,
+  retries:0,
   workers:50,
   projects:[
     {name:"chromium", use:{...devices["Desktop Chrome"]},},
