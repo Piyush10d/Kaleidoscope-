@@ -37,6 +37,13 @@ export class ReviewPage{
             console.log(error);
         }
     }
+    async expectFieldValueExtraCurricularActivity(activity:string,str:string,expectedStr:string){
+        try {
+            await expect(await this.page.locator("//*[text()='"+activity+"']/parent::*/parent::*/following-sibling::*//*[text()='"+str+"']/following-sibling::*")).toContainText(expectedStr);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async submitApplication(){
         await this.submitButton.click();
         await this.page.waitForTimeout(5000);

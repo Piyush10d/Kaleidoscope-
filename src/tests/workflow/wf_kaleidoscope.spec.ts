@@ -66,6 +66,7 @@ test("Check eassy boxes",async()=>{
 
 
 test("Review page",async()=>{
+    test.setTimeout(30000*3);
     await obj_POM_Pages.obj_ReviewPage.application.click();
     await obj_POM_Pages.obj_ReviewPage.knowYouList.click();
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("First Name",data.firstName);
@@ -81,35 +82,35 @@ test("Review page",async()=>{
     //----Extra
     await obj_POM_Pages.obj_ReviewPage.extraCurricularActivities.click();
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_1);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Extracurricular Activity Name",data.activity_1);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Total Number of Years Involved",data.yrInvolved);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("List any leadership roles,",data.role);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Description of Involvement",data.discription);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_1,"Extracurricular Activity Name",data.activity_1);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_1,"Total Number of Years Involved",data.yrInvolved);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_1,"List any leadership roles, offices, honors and recognitions related to this activity  ",data.role);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_1,"Description of Involvement",data.discription);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_1);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_2);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Extracurricular Activity Name",data.activity_2);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Total Number of Years Involved",data.yrInvolved);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("List any leadership roles,",data.role);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Description of Involvement",data.discription);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_2,"Extracurricular Activity Name",data.activity_2);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_2,"Total Number of Years Involved",data.yrInvolved);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_2,"List any leadership roles, offices, honors and recognitions related to this activity  ",data.role);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_2,"Description of Involvement",data.discription);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_2);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_3);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Extracurricular Activity Name",data.activity_3);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Total Number of Years Involved",data.yrInvolved);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("List any leadership roles,",data.role);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Description of Involvement",data.discription);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_3,"Extracurricular Activity Name",data.activity_3);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_3,"Total Number of Years Involved",data.yrInvolved);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_3,"List any leadership roles, offices, honors and recognitions related to this activity  ",data.role);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_3,"Description of Involvement",data.discription);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_3);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_4);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Extracurricular Activity Name",data.activity_4);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Total Number of Years Involved",data.yrInvolved);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("List any leadership roles,",data.role);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Description of Involvement",data.discription);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_4,"Extracurricular Activity Name",data.activity_4);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_4,"Total Number of Years Involved",data.yrInvolved);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_4,"List any leadership roles, offices, honors and recognitions related to this activity  ",data.role);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValueExtraCurricularActivity(data.activity_4,"Description of Involvement",data.discription);
     await obj_POM_Pages.obj_ReviewPage.clickActivityLocator(data.activity_4);
     await obj_POM_Pages.obj_ReviewPage.extraCurricularActivities.click();
     //--high school info
     await obj_POM_Pages.obj_ReviewPage.highSchoolInfo.click();
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("High School Name",data.shighschoolName);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("High School Street Address",data.hsStreetAddress);
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Additional High School Street",data.additionalAddress);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Additional High School Street Address",data.additionalAddress);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("High School City",data.hsCity);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("High School State (Full)",data.hsState);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("High School Zip Code",data.zipCode);
@@ -119,7 +120,7 @@ test("Review page",async()=>{
     await obj_POM_Pages.obj_ReviewPage.highSchoolInfo.click();
     //--essay
     await obj_POM_Pages.obj_ReviewPage.essay.click();
-    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Please select the essay types",data.essayWritten);
+    await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Please select the essay types you want to write about:",data.essayWritten);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Essay about Animals",data.eassyAboutAnimal);
     await obj_POM_Pages.obj_ReviewPage.expectFieldValue("Essay about School",data.eassyAboutSchool);
     await obj_POM_Pages.obj_ReviewPage.essay.click();    
