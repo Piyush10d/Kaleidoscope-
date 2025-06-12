@@ -8,20 +8,20 @@ import { UserDetailsPage } from "./UserDetailsPage";
 
 export class POM_Pages{
     page:Page;
-    obj_RegisterUser:RegisterUser;
-    obj_ExtracurricularActivitiesPage:ExtracurricularActivitiesPage;
-    obj_UserDetailsPage:UserDetailsPage;
-    obj_EducationDetailsPage:EducationDetailsPage;
-    obj_EassyPage:EassyPage;
-    obj_ReviewPage:ReviewPage;
+    RegisterUser:RegisterUser;
+    ExtracurricularActivitiesPage:ExtracurricularActivitiesPage;
+    UserDetailsPage:UserDetailsPage;
+    EducationDetailsPage:EducationDetailsPage;
+    EassyPage:EassyPage;
+    ReviewPage:ReviewPage;
     constructor(page:Page){
         this.page=page;
-        this.obj_RegisterUser=new RegisterUser(page);
-        this.obj_ExtracurricularActivitiesPage=new ExtracurricularActivitiesPage(page);
-        this.obj_UserDetailsPage=new UserDetailsPage(page);
-        this.obj_EducationDetailsPage=new EducationDetailsPage(page);
-        this.obj_EassyPage= new EassyPage(page);
-        this.obj_ReviewPage=new ReviewPage(page);
+        this.RegisterUser=new RegisterUser(page);
+        this.ExtracurricularActivitiesPage=new ExtracurricularActivitiesPage(page);
+        this.UserDetailsPage=new UserDetailsPage(page);
+        this.EducationDetailsPage=new EducationDetailsPage(page);
+        this.EassyPage= new EassyPage(page);
+        this.ReviewPage=new ReviewPage(page);
     }
     
 
