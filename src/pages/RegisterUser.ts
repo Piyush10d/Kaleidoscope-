@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test"
+import { chromium, Locator, Page } from "@playwright/test"
 
 export class RegisterUser {
     page: Page;
@@ -12,6 +12,7 @@ export class RegisterUser {
     submitButton: Locator;
     enterPassword: Locator;
     signIn: Locator;
+    logIn: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -25,15 +26,30 @@ export class RegisterUser {
         this.submitButton = page.getByRole('button', { name: 'Submit' })
         this.enterPassword = page.getByRole('textbox', { name: 'Enter Your Password' })
         this.signIn = page.getByRole('button', { name: 'Sign In' })
+        this.logIn = page.getByRole('button', { name: 'Log In to Apply' })
     }
 
-    async doRegistration(email:string,firstName:string,lastName:string,contactNumber:string,password:string) {
+    async launchURL(url: string) {
+        try {
+            // var newpage;
+            // const browser = await chromium.launch({ headless: false });
+            // const context = await browser.newContext();
+            // this.page = await context.newPage();
+            await this.page.goto(url);
+            await this.logIn.click();
+            //newpage = this.page;
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+    async doRegistration(email: string, firstName: string, lastName: string, contactNumber: string, password: string) {
         try {
             await this.page.waitForLoadState("domcontentloaded");
-            await this.emailAddress.fill(email);      
+            await this.emailAddress.fill(email);
             await this.nextButton.click();
             if (await this.enterPassword.isVisible()) {
-                await this.enterPassword.fill(password);  
+                await this.enterPassword.fill(password);
                 await this.signIn.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
@@ -47,7 +63,7 @@ export class RegisterUser {
                 await this.submitButton.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
-            console.log("User successfully Registerd with emailID : "+email);
+            console.log("User successfully Registerd with emailID : " + email);
 
         } catch (error) {
             console.log(error)

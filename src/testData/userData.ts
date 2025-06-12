@@ -1,8 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const data={
+    URL: process.env.BASE_URL || '',
+    password:process.env.PASSWORD || '',
     firstName:"Piyush",
     lastName:"Dhawas",
     contactNumber:"7276306164",
-    password:"Apply@1010d",
     streetAddress:"Colive grand",
     additionalStreetAddress:"Wakad chauk",
     state:"Maine",
