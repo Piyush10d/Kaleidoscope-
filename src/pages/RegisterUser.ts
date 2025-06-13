@@ -29,12 +29,17 @@ export class RegisterUser {
         this.logIn = page.getByRole('button', { name: 'Log In to Apply' })
     }
 
+    async goto(link:string){
+        await this.page.goto(link);
+        await this.page.waitForLoadState("load");
+    }
+
     async launchURL(url: string) {
         try {
             // var newpage;
-            // const browser = await chromium.launch({ headless: false });
-            // const context = await browser.newContext();
-            // this.page = await context.newPage();
+            //const browser = await chromium.launch({ headless: false });
+            //const context = await browser.newContext();
+            //this.page = await context.newPage();
             await this.page.goto(url);
             await this.logIn.click();
             //newpage = this.page;

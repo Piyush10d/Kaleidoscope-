@@ -21,6 +21,11 @@ export class UserDetailsPage {
         this.nextPage = page.getByRole('button', { name: 'Next Page' })
     }
 
+    async goto(link:string){
+        await this.page.goto(link);
+        await this.page.waitForLoadState("load");
+    }
+
     async fillUserDetails(streetAddress: string, additionalStreetAddress: string, state: string, city: string, zipCode: string, country: string) {
         try {
             await this.streetAddress.fill(streetAddress);
@@ -36,7 +41,6 @@ export class UserDetailsPage {
                 await this.page.reload();
                 await this.nextPage.click();
             }
-            console.log("User Details Filled Successfully");
         } catch (error) {
             console.log(error);
         }

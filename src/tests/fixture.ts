@@ -1,4 +1,4 @@
-import { test as baseTest, BrowserContext } from '@playwright/test';
+import { test as baseTest, Browser, BrowserContext, chromium, Page } from '@playwright/test';
 //import { type Page } from '@playwright/test';
 import { EassyPage } from '../pages/EassyPage';
 import { EducationDetailsPage } from '../pages/EducationDetailsPage';
@@ -14,9 +14,11 @@ type MyFixtures = {
   registerUser: RegisterUser;
   reviewPage: ReviewPage;
   userDetailsPage: UserDetailsPage;
+  page:Page;
 };
 
 export const test = baseTest.extend<MyFixtures>({
+
   eassyPage:async ({page}, use) => {
     const eassyPage=new EassyPage(page);
       await use(eassyPage);

@@ -33,6 +33,13 @@ export class EducationDetailsPage {
         this.nextPage = page.getByRole('button', { name: 'Next Page' })
 
     }
+
+
+    async goto(link:string){
+        await this.page.goto(link);
+        await this.page.waitForLoadState("load");
+    }
+    
     async fillEducationalDetails(shighschoolName: string, hsStreetAddress: string, additionalAddress: string, hsCity: string, hsState: string, zipCode: string, gpa: string, yearGraduation: string, inputFile: string) {
         try {
             await this.highSchoolName.fill(shighschoolName);
