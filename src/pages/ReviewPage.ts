@@ -32,63 +32,63 @@ export class ReviewPage {
         await expect(this.page.getByText('Edit').first()).not.toBeVisible();
     }
     
-    async reviewFilledDetails(firstName, lastName, email: string, streetAddress, additionalStreetAddress, state, city, zipCode, country, activity_1, yrInvolved, role, discription, activity_2, activity_3, activity_4, shighschoolName, hsStreetAddress, additionalAddress, hsCity, hsState, gpa, yearGraduation, essayWritten, eassyAboutAnimal, eassyAboutSchool) {
+    async reviewFilledDetails(data:any,email: string) {
         await this.application.click();
         await this.knowYouList.click();
-        await this.expectFieldValue("First Name", firstName);
-        await this.expectFieldValue("Last Name", lastName);
+        await this.expectFieldValue("First Name", data.firstName);
+        await this.expectFieldValue("Last Name", data.lastName);
         await this.expectFieldValue("Email Address", email);
-        await this.expectFieldValue("Street Address", streetAddress);
-        await this.expectFieldValue("Additional Street Address", additionalStreetAddress);
-        await this.expectFieldValue("State (Full)", state);
-        await this.expectFieldValue("City", city);
-        await this.expectFieldValue("Zip Code", zipCode);
-        await this.expectFieldValue("Country", country);
+        await this.expectFieldValue("Street Address", data.streetAddress);
+        await this.expectFieldValue("Additional Street Address", data.additionalStreetAddress);
+        await this.expectFieldValue("State (Full)", data.state);
+        await this.expectFieldValue("City", data.city);
+        await this.expectFieldValue("Zip Code", data.zipCode);
+        await this.expectFieldValue("Country", data.country);
         await this.knowYouList.click();
         //----Extra
         await this.extraCurricularActivities.click();
-        await this.clickActivityLocator(activity_1);
-        await this.expectFieldValueExtraCurricularActivity(activity_1, "Extracurricular Activity Name", activity_1);
-        await this.expectFieldValueExtraCurricularActivity(activity_1, "Total Number of Years Involved", yrInvolved);
-        await this.expectFieldValueExtraCurricularActivity(activity_1, "List any leadership roles, offices, honors and recognitions related to this activity  ", role);
-        await this.expectFieldValueExtraCurricularActivity(activity_1, "Description of Involvement", discription);
-        await this.clickActivityLocator(activity_1);
-        await this.clickActivityLocator(activity_2);
-        await this.expectFieldValueExtraCurricularActivity(activity_2, "Extracurricular Activity Name", activity_2);
-        await this.expectFieldValueExtraCurricularActivity(activity_2, "Total Number of Years Involved", yrInvolved);
-        await this.expectFieldValueExtraCurricularActivity(activity_2, "List any leadership roles, offices, honors and recognitions related to this activity  ", role);
-        await this.expectFieldValueExtraCurricularActivity(activity_2, "Description of Involvement", discription);
-        await this.clickActivityLocator(activity_2);
-        await this.clickActivityLocator(activity_3);
-        await this.expectFieldValueExtraCurricularActivity(activity_3, "Extracurricular Activity Name", activity_3);
-        await this.expectFieldValueExtraCurricularActivity(activity_3, "Total Number of Years Involved", yrInvolved);
-        await this.expectFieldValueExtraCurricularActivity(activity_3, "List any leadership roles, offices, honors and recognitions related to this activity  ", role);
-        await this.expectFieldValueExtraCurricularActivity(activity_3, "Description of Involvement", discription);
-        await this.clickActivityLocator(activity_3);
-        await this.clickActivityLocator(activity_4);
-        await this.expectFieldValueExtraCurricularActivity(activity_4, "Extracurricular Activity Name", activity_4);
-        await this.expectFieldValueExtraCurricularActivity(activity_4, "Total Number of Years Involved", yrInvolved);
-        await this.expectFieldValueExtraCurricularActivity(activity_4, "List any leadership roles, offices, honors and recognitions related to this activity  ", role);
-        await this.expectFieldValueExtraCurricularActivity(activity_4, "Description of Involvement", discription);
-        await this.clickActivityLocator(activity_4);
+        await this.clickActivityLocator(data.activity_1);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_1, "Extracurricular Activity Name", data.activity_1);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_1, "Total Number of Years Involved", data.yrInvolved);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_1, "List any leadership roles, offices, honors and recognitions related to this activity  ", data.role);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_1, "Description of Involvement", data.discription);
+        await this.clickActivityLocator(data.activity_1);
+        await this.clickActivityLocator(data.activity_2);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_2, "Extracurricular Activity Name", data.activity_2);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_2, "Total Number of Years Involved", data.yrInvolved);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_2, "List any leadership roles, offices, honors and recognitions related to this activity  ", data.role);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_2, "Description of Involvement", data.discription);
+        await this.clickActivityLocator(data.activity_2);
+        await this.clickActivityLocator(data.activity_3);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_3, "Extracurricular Activity Name", data.activity_3);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_3, "Total Number of Years Involved", data.yrInvolved);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_3, "List any leadership roles, offices, honors and recognitions related to this activity  ", data.role);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_3, "Description of Involvement", data.discription);
+        await this.clickActivityLocator(data.activity_3);
+        await this.clickActivityLocator(data.activity_4);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_4, "Extracurricular Activity Name", data.activity_4);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_4, "Total Number of Years Involved", data.yrInvolved);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_4, "List any leadership roles, offices, honors and recognitions related to this activity  ", data.role);
+        await this.expectFieldValueExtraCurricularActivity(data.activity_4, "Description of Involvement", data.discription);
+        await this.clickActivityLocator(data.activity_4);
         await this.extraCurricularActivities.click();
         //--high school info
         await this.highSchoolInfo.click();
-        await this.expectFieldValue("High School Name", shighschoolName);
-        await this.expectFieldValue("High School Street Address", hsStreetAddress);
-        await this.expectFieldValue("Additional High School Street Address", additionalAddress);
-        await this.expectFieldValue("High School City", hsCity);
-        await this.expectFieldValue("High School State (Full)", hsState);
-        await this.expectFieldValue("High School Zip Code", zipCode);
-        await this.expectFieldValue("GPA", gpa);
-        await this.expectFieldValue("Year of High School Graduation", yearGraduation);
-        await this.expectFieldValue("GPA", gpa);
+        await this.expectFieldValue("High School Name", data.shighschoolName);
+        await this.expectFieldValue("High School Street Address", data.hsStreetAddress);
+        await this.expectFieldValue("Additional High School Street Address", data.additionalAddress);
+        await this.expectFieldValue("High School City", data.hsCity);
+        await this.expectFieldValue("High School State (Full)", data.hsState);
+        await this.expectFieldValue("High School Zip Code", data.zipCode);
+        await this.expectFieldValue("GPA", data.gpa);
+        await this.expectFieldValue("Year of High School Graduation", data.yearGraduation);
+        await this.expectFieldValue("GPA", data.gpa);
         await this.highSchoolInfo.click();
         //--essay
         await this.essay.click();
-        await this.expectFieldValue("Please select the essay types you want to write about:", essayWritten);
-        await this.expectFieldValue("Essay about Animals", eassyAboutAnimal);
-        await this.expectFieldValue("Essay about School", eassyAboutSchool);
+        await this.expectFieldValue("Please select the essay types you want to write about:", data.essayWritten);
+        await this.expectFieldValue("Essay about Animals", data.eassyAboutAnimal);
+        await this.expectFieldValue("Essay about School", data.eassyAboutSchool);
         await this.essay.click();
     }
 

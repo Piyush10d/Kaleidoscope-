@@ -25,14 +25,14 @@ export class ExtracurricularActivitiesPage {
         this.form_renderer = page.locator('#form-renderer')
     }
 
-    async extracurricularActivities(activity_1,yrInvolved,role,discription,expectedText,activity_2,activity_3,activity_4) {
+    async extracurricularActivities(data:any) {
         
-        await this.fillExtracurricularActivities(activity_1, yrInvolved, role, discription);
+        await this.fillExtracurricularActivities(data.activity_1, data.yrInvolved, data.role, data.discription);
         await this.nextPage.click();
-        await expect(await this.form_renderer).toContainText(expectedText);
-        await this.fillExtracurricularActivities(activity_2, yrInvolved, role, discription);
-        await this.fillExtracurricularActivities(activity_3, yrInvolved, role, discription);
-        await this.fillExtracurricularActivities(activity_4, yrInvolved, role, discription);
+        await expect(await this.form_renderer).toContainText(data.expectedText);
+        await this.fillExtracurricularActivities(data.activity_2, data.yrInvolved, data.role, data.discription);
+        await this.fillExtracurricularActivities(data.activity_3, data.yrInvolved, data.role, data.discription);
+        await this.fillExtracurricularActivities(data.activity_4, data.yrInvolved, data.role, data.discription);
         await this.page.waitForTimeout(3000);
         await this.nextPage.click();
     }

@@ -21,25 +21,29 @@ export class UserDetailsPage {
         this.nextPage = page.getByRole('button', { name: 'Next Page' })
     }
 
-    async goto(link:string){
+    async goto(link: string) {
         await this.page.goto(link);
         await this.page.waitForLoadState("load");
     }
 
-    async fillUserDetails(streetAddress: string, additionalStreetAddress: string, state: string, city: string, zipCode: string, country: string) {
+    async fillUserDetails(data: any) {
         try {
-            await this.streetAddress.fill(streetAddress);
-            await this.additionStreetAddress.fill(additionalStreetAddress);
+            await this.streetAddress.fill(data.streetAddress);
+            await this.additionStreetAddress.fill(data.additionalStreetAddress);
             await this.state.click();
-            await this.role.locator("//*[text()='" + state + "']").click();
-            await this.city.fill(city);
-            await this.zipCode.fill(zipCode);
+            await this.role.locator("//*[text()='" + data.state + "']").click();
+            await this.city.fill(data.city);
+            await this.zipCode.fill(data.zipCode);
             await this.country.click();
-            await this.role.locator("//*[text()='" + country + "']").click();
-            await this.nextPage.click();
-            if (await this.page.getByText('Failed to save').isVisible({ timeout: 3000 })) {
-                await this.page.reload();
+            await this.role.locator("//*[text()='" + data.country + "']").click();
+            try {
                 await this.nextPage.click();
+            }
+            catch (error) {
+                if (await this.page.getByText('Failed to save').isVisible({ timeout: 3000 })) {
+                    await this.page.reload();
+                    await this.nextPage.click();
+                }
             }
         } catch (error) {
             console.log(error);

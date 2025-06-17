@@ -27,7 +27,7 @@ export class EassyPage {
         this.nextPage = page.getByRole('button', { name: 'Next Page' })
     }
 
-    async fillEassy(eassyAboutAnimal,eassyAboutSchool) {
+    async fillEassy(data:any) {
         await this.car.check();
         await expect(await this.eassyAboutCar).toBeVisible();
         await this.car.uncheck();
@@ -41,9 +41,9 @@ export class EassyPage {
         await expect(await this.eassyAboutOther).toBeVisible();
         await this.other.uncheck();
         await this.animal.check();
-        await this.eassyAboutAnimals.fill(eassyAboutAnimal);
+        await this.eassyAboutAnimals.fill(data.eassyAboutAnimal);
         await this.school.check();
-        await this.eassyAboutSchool.fill(eassyAboutSchool);
+        await this.eassyAboutSchool.fill(data.eassyAboutSchool);
         await this.nextPage.click({ timeout: 2000 });
     }
     async goto(link: string) {

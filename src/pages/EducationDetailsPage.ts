@@ -40,23 +40,23 @@ export class EducationDetailsPage {
         await this.page.waitForLoadState("load");
     }
     
-    async fillEducationalDetails(shighschoolName: string, hsStreetAddress: string, additionalAddress: string, hsCity: string, hsState: string, zipCode: string, gpa: string, yearGraduation: string, inputFile: string) {
+    async fillEducationalDetails(data:any) {
         try {
-            await this.highSchoolName.fill(shighschoolName);
-            await this.highSchoolStreet.fill(hsStreetAddress);
-            await this.additionalHighScoolStreet.fill(additionalAddress);
-            await this.highSchoolCity.fill(hsCity);
+            await this.highSchoolName.fill(data.shighschoolName);
+            await this.highSchoolStreet.fill(data.hsStreetAddress);
+            await this.additionalHighScoolStreet.fill(data.additionalAddress);
+            await this.highSchoolCity.fill(data.hsCity);
             await this.highSchoolState.click();
-            await this.role.locator("//*[text()='" + hsState + "']").click();
-            await this.zipCode.fill(zipCode);
-            await this.gpa.fill(gpa);
-            await this.yearGraduation.fill(yearGraduation);
+            await this.role.locator("//*[text()='" + data.hsState + "']").click();
+            await this.zipCode.fill(data.zipCode);
+            await this.gpa.fill(data.gpa);
+            await this.yearGraduation.fill(data.yearGraduation);
             const [upload] = await Promise.all([
                 this.page.waitForEvent("filechooser"),
                 this.uploadFile.click()
             ])
             await upload.setFiles([process.cwd()+ "//src//testData//My School Transcript.pdf"])
-            await this.page.waitForSelector("//span[text()='" + inputFile + "']");
+            await this.page.waitForSelector("//span[text()='" + data.inputFile + "']");
             await this.nextPage.click();
             try {
                 await this.page.waitForTimeout(5000);

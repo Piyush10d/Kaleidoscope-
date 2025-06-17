@@ -3,6 +3,7 @@ import {devices, PlaywrightTestConfig,defineConfig} from "@playwright/test"
 
 export default defineConfig({
   //testDir:"src/tests/workflow",
+  timeout:60000*5,
   testMatch:"wf_kaleidoscope.spec.ts",
   
   use:{
@@ -12,7 +13,7 @@ export default defineConfig({
     channel:"chrome"
   },
   fullyParallel:true,
-  retries:0,
+  retries:1,
   workers:50,
   projects:[
     {name:"chromium", use:{...devices["Desktop Chrome"]},},

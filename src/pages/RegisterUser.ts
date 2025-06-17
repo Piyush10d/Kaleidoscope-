@@ -34,13 +34,13 @@ export class RegisterUser {
         await this.page.waitForLoadState("load");
     }
 
-    async launchURL(url: string) {
+    async launchURL(data: any) {
         try {
             // var newpage;
             //const browser = await chromium.launch({ headless: false });
             //const context = await browser.newContext();
             //this.page = await context.newPage();
-            await this.page.goto(url);
+            await this.page.goto(data.URL);
             await this.logIn.click();
             //newpage = this.page;
         } catch (error) {
@@ -48,22 +48,22 @@ export class RegisterUser {
         }
 
     }
-    async doRegistration(email: string, firstName: string, lastName: string, contactNumber: string, password: string) {
+    async doRegistration(email: string, data:any) {
         try {
             await this.page.waitForLoadState("domcontentloaded");
             await this.emailAddress.fill(email);
             await this.nextButton.click();
             if (await this.enterPassword.isVisible()) {
-                await this.enterPassword.fill(password);
+                await this.enterPassword.fill(data.password);
                 await this.signIn.click();
                 await this.page.waitForLoadState("domcontentloaded");
             }
             else {
-                await this.firstName.fill(firstName);
-                await this.lastName.fill(lastName);
+                await this.firstName.fill(data.firstName);
+                await this.lastName.fill(data.lastName);
                 await this.page.waitForLoadState("domcontentloaded");
-                await this.mobileNumber.fill(contactNumber);
-                await this.createPassword.fill(password);
+                await this.mobileNumber.fill(data.contactNumber);
+                await this.createPassword.fill(data.password);
                 await this.confirmCheckbox.check();
                 await this.submitButton.click();
                 await this.page.waitForLoadState("domcontentloaded");
